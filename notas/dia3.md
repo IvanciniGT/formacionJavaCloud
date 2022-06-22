@@ -145,3 +145,16 @@ Kubernetes
         containerd | crio
     Maquina 3
         containerd | crio
+
+---
+git clone https://github.com/IvanciniGT/formacionJavaCloud.git Ivan
+
+cd Ivan/proyectos/1-basico/proyectoWEB
+
+mvn package       # target/proyectoWEB.war
+docker build . -t mitomcat:v1.0    # Imagen de contenedor
+
+---
+# PARA JUGAR (PRUEBAS)
+docker-compose up -d 
+
