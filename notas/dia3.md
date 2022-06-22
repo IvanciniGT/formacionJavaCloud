@@ -136,3 +136,12 @@ empaquetes                      package
                                 sonar:sonar
                                 
 tomcat contenedor
+
+
+Kubernetes
+    Maquina 1
+        containerd | crio
+    Maquina 2
+        containerd | crio
+    Maquina 3
+        containerd | crio

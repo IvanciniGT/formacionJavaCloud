@@ -15,5 +15,9 @@ services:
 
 # sudo apt install docker-compose -y
 
-#mkdir -p /home/ubuntu/environment/datos/tomcat/app
-#chmod 777 -R /home/ubuntu/environment/datos
+# mkdir -p /home/ubuntu/environment/datos/tomcat/app
+# chmod 777 -R /home/ubuntu/environment/datos
+
+# docker-compose up
+
+
