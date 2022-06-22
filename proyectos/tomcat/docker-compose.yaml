@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    mitomcat:
+        container_name: mitomcat
+        image: docker.io/bitnami/tomcat:10
+        ports:
+          - '8080:8080'
+        volumes:
+          - '/home/ubuntu/environment/datos/tomcat/app:/app'
+        environment:
+          - TOMCAT_USERNAME=admin
+          - TOMCAT_PASSWORD=password
+          - TOMCAT_ALLOW_REMOTE_MANAGEMENT=1
+
+# sudo apt install docker-compose -y
+
+#mkdir -p /home/ubuntu/environment/datos/tomcat/app
+#chmod 777 -R /home/ubuntu/environment/datos
