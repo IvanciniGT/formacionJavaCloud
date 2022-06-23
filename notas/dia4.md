@@ -149,3 +149,72 @@ Pincho USB de 16gb puedo guardar una peli de 5 gbs
 Depende del sistema de archivos FAT16 FAT32 NTFS
 
 Y si quiero guardar un archivo de 16Pb
+
+
+
+Servidor 16 gbs
+app1 min 1 max 15 - 9 OutOfMemoryException
+app2 min 1 max 15 - 9
+
+
+---
+
+4 maquinas
+-----------------------
+App1
+maquina 1 25%
+maquina 2 25% *
+maquina 3 25% *
+maquina 4 25% *
+
+Pago 4 y uso 1 HA / Servicio muy critico
+App2
+Y tengo la misma
+
+
+50 maquinas - 5
+Aqui echo de todo
+pod1 45%
+pod2 45%
+
+---
+deployment/storageRequest: 200Mi
+# Lo que pedimos de almacenamiento: 200 Mebibytes = 
+
+    1 Ki = 1024 bytes
+    -------------------------
+    1 Kb = 1000 bytes
+    
+deployment/cpuRequest: 700m
+                       700 milicores
+
+            Equivalente a usar 1 CPU el 70% del tiempo
+            
+            3 CPUs... 10%, 20%, 40%
+
+
+-----
+
+html  (estático o generado por un java) que carga unos JS en el navegador
+Todo el frontend corre en el navegador (WEB-COMPONENTS)
+                                            w3c
+                                            reactJS
+                                            angularJS
+                                            vueJs
+    Todo el frontend(navegador) hace peticiones a nuestros servicios de back end
+----               VVVVV REST
+            Backend JAVA SPRINGBOOT. <<<<<<< REST Sistema de voz interactivo
+----               ^^^^^ REST
+Otro frontend completamente diferente en JAVA (KOTLIN)  - Android
+                                         SWIFT          - iOS
+                                         
+                                         
+Programa de usuarios            TOMCAT              |
+    - crear un usuario          < Servicio WEB      |   BBDD
+    - autenticar un usuario     < Servicio WEB      |
+    - borrar un usuario         < Servicio WEB      |
+    
+Programa de expedientes                             |   BBDD
+
+Programa de envio de emails
+

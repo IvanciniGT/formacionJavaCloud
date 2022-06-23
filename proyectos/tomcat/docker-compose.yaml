@@ -5,6 +5,7 @@ services:
         container_name: mitomcat
         #image: docker.io/bitnami/tomcat:10
         image: mitomcat:v1.0 # LA hemos generador desde Dockerfile
+               #image-registry.openshift-image-registry.svc:5000/java-ivan/mitomcat:latest
         ports:
           - '8080:8080'
         environment:

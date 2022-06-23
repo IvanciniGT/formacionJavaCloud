@@ -1,0 +1,112 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: mitomcat
+  namespace: java-ivan
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: mitomcat
+  namespace: java-ivan
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'mitomcat:latest'
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/IvanciniGT/formacionJavaCloud.git'
+    contextDir: proyectos/1-basico/proyectoWEB
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mitomcat
+  namespace: java-ivan
+spec:
+  selector:
+    matchLabels:
+      app: mitomcat
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mitomcat
+    spec:
+      containers:
+        - name: mitomcat
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/java-ivan/mitomcat:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+              ## Configuracion del Tomcat embebido
+          resources:
+            requests: # Valores garantizados
+                cpu:    1.9    # Lo calibro en base a la RAM
+                memory: 1000Mi # La que haya puesto a la maquina virtual de java: cache + Trabajo -> 70 a la vez
+                # -Xms1000m -Xmx1000m. RECOMENDACION EN JAVA
+                # El threadPool de Tomcat: 70 threads... Si dejo 200 que es por defecto
+            limits:   # Valores maximos permitidos... si hay hueco
+                cpu:    ~ # Infinito y más allá !!!!
+                memory: 1000Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mitomcat
+  namespace: java-ivan
+spec:
+  selector:
+    app: mitomcat
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: mitomcat
+  namespace: java-ivan
+spec:
+  host: mitomcat-java-ivan.apps.my-rosa-cluster.i5mn.p1.openshiftapps.com
+  to:
+    kind: Service
+    name: mitomcat
+    weight: 100
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mitomcat
+  namespace: java-ivan
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mitomcat
+  minReplicas: 8
+  maxReplicas: 30
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization

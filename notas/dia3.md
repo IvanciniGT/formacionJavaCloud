@@ -161,6 +161,7 @@ docker.io        /bitnami        /tomcat         :10
 quay.io                repositorio 
 
 
+image-registry.openshift-image-registry.svc:5000/java-ivan/mitomcat:latest
 
 docker:
     build: Crear imágenes de contenedor
