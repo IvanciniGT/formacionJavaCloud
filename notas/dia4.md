@@ -218,3 +218,65 @@ Programa de expedientes                             |   BBDD
 
 Programa de envio de emails
 
+----
+
+Continuous Integration - Tener automatizadamente la ultima version de desarrollo 
+en entorno de integración estando sometida a pruebas automatizadas
+                                             -----------------------
+                                             
+                                Pruebas estáticas de calidad de código: SONARQUBE
+                                            Malas prácticas < Code Smells
+                                        Desarrollador Senior
+
+2º Codigo
+1º Diseño pruebas ... que no se hacía
+3º Superar pruebas / ejecución < Ejecución del código
+
+
+Pruebas de software:
+    Pruebas estaticas: 
+        Sonarqube
+    Pruebas dinamicas:
+        Pruebas funcionales:
+            Pruebas unitarias
+            Pruebas inetgracion
+            Pruebas de sistemas
+            Pruebas de Interfaz gráfica
+            Pruebas de aceptacion
+        Pruebas nofuncionales
+            Pruebas de carga
+            de estres
+            de ha
+            de UX
+
+TDD 1º Diseño pruebas
+    2º Codigo Escribiendo 20 ficheros.... 3 dias 
+    3º Superar pruebas / ejecución < Ejecución del código
+
+BDD
+ATDD
+
+Continuous Delivery   - Distribución automatizado.
+    Si me hubiera quedado en publicar la imagen del contenedor : docker push
+Continuous Deployment - Despliegue automatizado
+
+
+
+SECRET              < CHART 
+    PASSWORD
+    
+Statefulset
+    Pod BBDD
+        env
+            PASSWORD < SECRET
+Deployment
+    Pod TOMCAT
+        env
+            PASSWORD < SECRET
+            
+GESTOR BBDD (Oracle)
+    Script Creación de usuario < CONTRASEÑA
+    VVVV
+
+SECRET              < CHART 
+    PASSWORD
