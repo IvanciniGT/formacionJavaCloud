@@ -4,7 +4,7 @@ services:
     mitomcat:
         container_name: mitomcat
         #image: docker.io/bitnami/tomcat:10
-        image: mitomcat:v1.0
+        image: mitomcat:v1.0 # LA hemos generador desde Dockerfile
         ports:
           - '8080:8080'
         environment:
@@ -22,5 +22,4 @@ services:
 # chmod 777 -R /home/ubuntu/environment/datos
 
 # docker-compose up
-
 

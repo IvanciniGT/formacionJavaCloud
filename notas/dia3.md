@@ -153,3 +153,21 @@ docker build . -t mitomcat:v1.0    # Imagen de contenedor
 # PARA JUGAR (PRUEBAS)
 docker-compose up -d 
 
+
+REGISTRY
+docker.io        /bitnami        /tomcat         :10
+                *************************
+          usuario/empresa/cuenta.   producto     imagen
+quay.io                repositorio 
+
+
+
+docker:
+    build: Crear imágenes de contenedor
+    -----------------------------------> Generación del artefacto / Desplegable > Registry
+    
+Puesta en producción
+    ContainerD  - Crear y ejecutar contenedores.      < docker-compose.yaml - Sirve para pruebas. NADA MAS
+                                                      < despliegue.yaml - En producción usamos Kubernetes
+
+AUTOMATIZAR
